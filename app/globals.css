@@ -1,26 +1,52 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------
+   Global Layout
+---------------------------------------- */
+
+html, body {
+  height: 100%;
+  background-color: #f9fafb; /* gray-50 */
+  color: #111827;            /* gray-900 */
+  -webkit-font-smoothing: antialiased;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------------------------------------
+   Typography
+---------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #111827;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+p {
+  color: #374151; /* gray-700 */
+  line-height: 1.6;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------
+   Form Elements
+---------------------------------------- */
+
+input, select, textarea {
+  @apply border border-gray-300 rounded px-3 py-2 w-full;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+label {
+  @apply font-medium text-gray-800;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------------------------------------
+   Utility Helpers
+---------------------------------------- */
+
+.container {
+  @apply max-w-4xl mx-auto px-4;
 }

@@ -1,8 +1,8 @@
 import { createCustomer } from "@/services/customerService";
-// /import CustomerForm from "@/components/CustomerForm";
+
 
 import { Customer } from "@/types/customer";
-import CustomerForm from "../[id]/CustomerForm";
+import CustomerForm from "@/components/CustomerForm";
 
 export default function NewCustomerPage() {
   const emptyCustomer: Customer = {
