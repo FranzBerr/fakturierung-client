@@ -1,10 +1,89 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Ignored default folder with query files
-/queries/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+# ---------------------------------------------------------
+# Node / Next.js
+# ---------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Next.js build output
+.next/
+out/
+dist/
+
+# Next.js cache
+.next/cache/
+.vercel/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Turbo / SWC / Babel
+turbo/
+.swc/
+.cache/
+babel.config.js.timestamp*
+
+# ---------------------------------------------------------
+# OS-specific
+# ---------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------
+# WebStorm / JetBrains IDEs
+# ---------------------------------------------------------
+.idea/
+# But keep code style + inspections if needed:
+# !.idea/codeStyles/
+# !.idea/inspectionProfiles/
+
+# JetBrains project files
+*.iml
+
+# ---------------------------------------------------------
+# Logs
+# ---------------------------------------------------------
+logs/
+*.log
+*.log.*
+npm-debug.log*
+lerna-debug.log*
+
+# ---------------------------------------------------------
+# Testing
+# ---------------------------------------------------------
+coverage/
+.nyc_output/
+jest-cache/
+jest-html-reporters-*
+
+# ---------------------------------------------------------
+# TypeScript
+# ---------------------------------------------------------
+*.tsbuildinfo
+
+# ---------------------------------------------------------
+# Docker
+# ---------------------------------------------------------
+docker-data/
+docker-compose.override.yml
+
+# ---------------------------------------------------------
+# Misc
+# ---------------------------------------------------------
+*.local
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
