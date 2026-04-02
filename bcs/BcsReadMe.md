@@ -1,44 +1,59 @@
 # 📁 Frontend‑Ordnerstruktur (komplett & GitHub‑fertig)
 
 ```bash
-frontend/
-├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── page.tsx
-│   │
-│   └── customers/
-│       ├── page.tsx              # Kundenliste (Server Component)
-│       ├── new/
-│       │   └── page.tsx          # Neuer Kunde (Server Component + Client Form)
-│       └── [id]/
-│           ├── page.tsx          # Kunde bearbeiten
-│           └── CustomerForm.tsx  # Client Component
+src/
+├─ app/
+│  ├─ api/
+│  │  └─ customers/
+│  │     ├─ route.ts                 → GET (Liste), POST (Create)
+│  │     └─ [id]/
+│  │        └─ route.ts              → GET, PUT, DELETE (ein Kunde)
+│  │
+│  ├─ customers/
+│  │  ├─ page.tsx                    → Kundenliste
+│  │  ├─ new/
+│  │  │  └─ page.tsx                 → Neuer Kunde
+│  │  ├─ [id]/
+│  │  │  ├─ page.tsx                 → Kundendetails
+│  │  │  └─ edit/
+│  │  │     └─ page.tsx              → Kunde bearbeiten
+│  │  └─ layout.tsx (optional)       → Bereichs‑Layout
+│  │
+│  ├─ products/                      → (analog zu customers)
+│  │  ├─ page.tsx
+│  │  ├─ new/
+│  │  │  └─ page.tsx
+│  │  ├─ [id]/
+│  │  │  ├─ page.tsx
+│  │  │  └─ edit/
+│  │  │     └─ page.tsx
+│  │
+│  ├─ invoices/                      → (optional, wenn du Rechnungen baust)
+│  │  ├─ page.tsx
+│  │  ├─ new/
+│  │  │  └─ page.tsx
+│  │  ├─ [id]/
+│  │  │  ├─ page.tsx
+│  │  │  └─ edit/
+│  │  │     └─ page.tsx
+│  │
+│  ├─ page.tsx                       → Homepage
+│  └─ layout.tsx                     → Globales Layout
 │
-├── src/
-│   ├── services/
-│   │   └── customerService.ts    # REST-Client
-│   │
-│   ├── types/
-│   │   └── customer.ts           # DTO-Typen
-│   │
-│   └── components/
-│       ├── Layout/
-│       │   └── Header.tsx        # optional
-│       └── ui/
-│           ├── Button.tsx
-│           └── Input.tsx
+├─ services/
+│  ├─ customerService.ts             → API‑Client für Kunden
+│  ├─ productService.ts              → API‑Client für Produkte
+│  └─ invoiceService.ts (optional)
 │
-├── public/
-│   └── favicon.ico
+├─ types/
+│  ├─ customer.ts                    → Customer‑Typen
+│  ├─ product.ts                     → Product‑Typen
+│  └─ invoice.ts (optional)
 │
-├── .eslintrc.json
-├── next.config.js
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── tsconfig.json
-└── .gitignore
+└─ components/
+   ├─ CustomerForm.tsx               → Formular für Create/Edit
+   ├─ ProductForm.tsx
+   └─ InvoiceForm.tsx
 
 ```
 

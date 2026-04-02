@@ -1,74 +1,101 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Customer } from "@/types/customer";
 
-type CustomerFormProps = {
-  initialCustomer: Customer;
-  onSubmitAction: (customer: Customer) => void;
-};
+interface CustomerFormProps {
+  initialValues: Customer;
+  submitLabel: string;
+  onSubmit: (values: Customer) => Promise<void>;
+}
 
 export default function CustomerForm({
-                                       initialCustomer,
-                                       onSubmitAction
+                                       initialValues,
+                                       submitLabel,
+                                       onSubmit,
                                      }: CustomerFormProps) {
-  const [customer, setCustomer] = useState<Customer>(initialCustomer);
+  const [form, setForm] = useState<Customer>(initialValues);
 
-  const fields: (keyof Customer)[] = [
-    "kundennummer",
-    "firma",
-    "strasse",
-    "plz",
-    "ort"
-  ];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-  function update<K extends keyof Customer>(key: K, value: Customer[K]) {
-    setCustomer(prev => ({
-      ...prev,
-      [key]: value
-    }));
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await onSubmit(form);
+  };
 
-  //später
-  // function handleSubmit(e: SubmitEvent) {
-  //   e.preventDefault();
-  //   onSubmitAction(customer);
-  // }
-
-  // übergangsweise
-  function handleSubmit(e: unknown) {
-    const event = e as SubmitEvent;
-    event.preventDefault();
-    onSubmitAction(customer);
-  }
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit} className="space-y-4">
 
-      {fields.map(field => (
-        <div key={field} className="flex flex-col gap-1">
-          <label className="font-medium capitalize">
-            {field}
-          </label>
+      <div>
+        <label className="block font-medium mb-1">Kundennummer</label>
+        <input
+          type="text"
+          name="kundennummer"
+          value={form.kundennummer}
+          onChange={handleChange}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
+      </div>
 
+      <div>
+        <label className="block font-medium mb-1">Firma</label>
+        <input
+          type="text"
+          name="firma"
+          value={form.firma}
+          onChange={handleChange}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
+      </div>
+
+      <div>
+        <label className="block font-medium mb-1">Straße</label>
+        <input
+          type="text"
+          name="strasse"
+          value={form.strasse}
+          onChange={handleChange}
+          className="w-full border px-3 py-2 rounded"
+          required
+        />
+      </div>
+
+      <div className="flex gap-4">
+        <div className="flex-1">
+          <label className="block font-medium mb-1">PLZ</label>
           <input
             type="text"
-            value={customer[field] ?? ""}
-            onChange={e => update(field, e.target.value)}
-            className="border border-gray-300 rounded px-3 py-2 w-full
-                       focus:outline-none focus:ring-2 focus:ring-blue-500"
+            name="plz"
+            value={form.plz}
+            onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
             required
           />
         </div>
-      ))}
+
+        <div className="flex-1">
+          <label className="block font-medium mb-1">Ort</label>
+          <input
+            type="text"
+            name="ort"
+            value={form.ort}
+            onChange={handleChange}
+            className="w-full border px-3 py-2 rounded"
+            required
+          />
+        </div>
+      </div>
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded
-                   hover:bg-blue-700 transition"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
-        Speichern
+        {submitLabel}
       </button>
-
     </form>
   );
 }
